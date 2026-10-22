@@ -96,3 +96,23 @@ def summarise_gdp(data):
         "change_percent",
         ascending=False,
     )
+
+def summarise_gdp(data):
+    """Compare each country's real GDP in 2000 and 2022."""
+    wide = data.pivot(
+        index="country",
+        columns="year",
+        values="gdp",
+    )
+
+    summary = pd.DataFrame({
+        "GDP_2000_trillion": wide[2000] / 1e12,
+        "GDP_2022_trillion": wide[2022] / 1e12,
+        "change_percent": (wide[2022] / wide[2000] - 1) * 100,
+    })
+
+    return summary.sort_values(
+        "change_percent",
+        ascending=False,
+    )
+

@@ -1,9 +1,15 @@
 # here for plotting functions
 
 import matplotlib.pyplot as plt
+import pandas as pd
+from matplotlib.axes import Axes
+from matplotlib.figure import Figure
 
 
-def plot_gdp(data, indexed=False):
+def plot_gdp(
+    data: pd.DataFrame,
+    indexed: bool = False,
+) -> tuple[Figure, Axes]:
     """Plot real GDP levels, or an index with 2000 equal to 100."""
     wide = data.pivot(
         index="year",
